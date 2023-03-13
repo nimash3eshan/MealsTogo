@@ -4,8 +4,11 @@ import {Text, StyleSheet} from 'react-native';
 import {Card} from 'react-native-paper';
 
 const Title = styled.Text`
-  padding: 16px;
-  color: black;
+  padding: 8px;
+  font-family: 'Oswald-Regular';
+  font-size: 20px;
+  color: ${props => props.theme.colors.ui.primary};
+  //l  react context provioder from theme check App.js wrapper
 `;
 
 export const RestaurantInfoCard = ({restaurant = {}}) => {
