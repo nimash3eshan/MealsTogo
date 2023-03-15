@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import styled from 'styled-components/native';
-import {Text, StyleSheet, Image, View} from 'react-native';
+import {Text, StyleSheet, Image} from 'react-native';
 import {Card} from 'react-native-paper';
 import Svg, {Path, Circle} from 'react-native-svg';
+import {Spacer} from '../../../components/spacer/spacer.component';
 
 const Star = props => (
   <Svg
@@ -111,7 +112,7 @@ const SectionEnd = styled.View`
 export const RestaurantInfoCard = ({restaurant = {}}) => {
   const {
     name = 'Some Restaurant',
-    icon,
+    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
     photos = [
       'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
     ],
@@ -124,14 +125,14 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <Card>
-      <Card.Cover style={styles.cover} source={{uri: photos[0]}} />
+    <Card style={styles.card} elevation={5}>
+      <Card.Cover key={name} style={styles.cover} source={{uri: photos[0]}} />
       <Card.Content>
-        <Title variant="bodyMedium">{name}</Title>
+        <Title variant="label">{name}</Title>
         <Section>
           <Row>
-            {ratingArray.map(() => (
-              <Star style={styles.star} />
+            {ratingArray.map((_, i) => (
+              <Star key={i} style={styles.star} />
             ))}
           </Row>
           <SectionEnd>
@@ -140,9 +141,9 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
                 CLOSED TEMPORARILY
               </Text>
             )}
-            <View style={{paddingLeft: 16}} />
+            <Spacer variant="left.large" />
             {isOpenNow && <Info style={styles.star} />}
-            <View style={{paddingLeft: 16}} />
+            <Spacer variant="left.large" />
             <Image style={{width: 15, height: 15}} source={{uri: icon}} />
           </SectionEnd>
         </Section>
@@ -165,5 +166,9 @@ const styles = StyleSheet.create({
   star: {
     height: 20,
     width: 20,
+  },
+  card: {
+    backgroundColor: 'white',
+    marginBottom: 30,
   },
 });
