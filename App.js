@@ -8,6 +8,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Text, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {RestaurantsContextProvider} from './src/services/restaurants/restaurants.context';
 
 const Tab = createBottomTabNavigator();
 
@@ -68,7 +69,9 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <MyTabs />
+          <RestaurantsContextProvider>
+            <MyTabs />
+          </RestaurantsContextProvider>
         </NavigationContainer>
       </ThemeProvider>
       <StatusBar style="auto" />
