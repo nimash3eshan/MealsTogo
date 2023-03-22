@@ -53,7 +53,11 @@ function MyTabs() {
         component={RestaurantScreen}
         options={{headerShown: false}}
       />
-      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
