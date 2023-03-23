@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useContext} from 'react';
 import {
   SafeAreaView,
@@ -6,10 +7,11 @@ import {
   FlatList,
   View,
 } from 'react-native';
-import {Searchbar} from 'react-native-paper';
-import {RestaurantInfoCard} from '../components/restaurant-info-card.component';
 import {RestaurantsContext} from '../../../services/restaurants/restaurants.context';
 import {ActivityIndicator, MD2Colors} from 'react-native-paper';
+
+import {Search} from '../components/search.component';
+import {RestaurantInfoCard} from '../components/restaurant-info-card.component';
 
 export const RestaurantScreen = () => {
   const {isLoading, error, restaurants} = useContext(RestaurantsContext);
@@ -26,9 +28,7 @@ export const RestaurantScreen = () => {
           />
         </View>
       )}
-      <View style={styles.search}>
-        <Searchbar style={styles.sbar} placeholder="Search" elevation={5} />
-      </View>
+      <Search />
       <FlatList
         data={restaurants}
         renderItem={({item}) => <RestaurantInfoCard restaurant={item} />}
